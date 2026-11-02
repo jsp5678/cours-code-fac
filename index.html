@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyage dans l'espace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="fond"></canvas>
+
+  <!-- Écran d'accueil : uniquement le ciel étoilé et un bouton -->
+  <section class="accueil">
+    <a class="bouton pulse" href="#intro">Je découvre ↓</a>
+  </section>
+
+  <header id="intro">
+    <h1>Voyage dans le système solaire</h1>
+    <p>Survolez une carte pour illuminer la planète, cliquez pour tout savoir.</p>
+  </header>
+
+  <main id="planetes">
+    <h2>Les 8 planètes</h2>
+    <div class="grille" id="grille"></div>    
+    <div class="lien-jeu">
+      <p>Prêt à tester vos connaissances sur le voyage spatial ?</p>
+      <a class="bouton" href="jeu.html">🎮 Jouer : Mission astronaute</a>
+    </div>
+  </main>
+
+  <div class="voile" id="voile">
+    <div class="fiche" id="fiche"></div>
+  </div>
+
+  <footer>Créé avec curiosité depuis VS Code ✨</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

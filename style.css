@@ -1,0 +1,287 @@
+:root {
+  --fond: #060a1c;
+  --violet: #8b5cf6;
+  --cyan: #22d3ee;
+  --texte: #e5e7eb;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  color: var(--texte);
+  background: var(--fond);
+}
+
+/* Le canvas reste fixe derrière tout le reste */
+#fond {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* ===== Écran d'accueil : ciel seul + bouton ===== */
+.accueil {
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 70px;
+}
+
+.pulse { animation: pulse 2.2s ease-in-out infinite; }
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(34, 211, 238, 0.4); }
+  50% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.9); }
+}
+
+header { text-align: center; padding: 90px 20px 50px; }
+
+h1 {
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  margin: 0 0 10px;
+  color: var(--cyan);
+  text-shadow: 0 0 20px var(--cyan);
+}
+
+.bouton {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--violet), var(--cyan));
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: transform 0.2s;
+}
+.bouton:hover { transform: scale(1.1); }
+
+main { max-width: 1000px; margin: 0 auto; padding: 20px; }
+main h2 { text-align: center; font-size: 2rem; }
+
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+}
+
+.carte {
+  background: rgba(10, 15, 40, 0.65);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.carte:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px var(--violet);
+}
+.carte h3 { color: var(--cyan); margin: 12px 0 6px; }
+.carte p { margin: 0; font-size: 0.9rem; }
+
+/* Petite planète dessinée en CSS */
+.pastille {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  border-radius: 50%;
+  box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Fenêtre qui s'ouvre au clic */
+.voile {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 10, 0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10;
+}
+.voile.ouvert { display: flex; }
+
+.fiche {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #0d1330;
+  border: 1px solid var(--violet);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+  animation: apparait 0.3s;
+}
+@keyframes apparait {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.fiche h2 { color: var(--cyan); margin: 10px 0 0; text-align: center; }
+.fiche .type { text-align: center; opacity: 0.7; margin: 0 0 16px; }
+.fiche ul { padding-left: 20px; }
+
+.fermer {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.stat {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 0.85rem;
+}
+.stat b { display: block; color: var(--cyan); font-size: 0.75rem; text-transform: uppercase; }
+
+.savoir {
+  margin-top: 16px;
+  padding: 12px;
+  border-left: 4px solid var(--violet);
+  background: rgba(139, 92, 246, 0.15);
+  border-radius: 0 10px 10px 0;
+}
+
+footer { text-align: center; padding: 40px 20px; opacity: 0.7; }
+
+/* ===== Page voyage ===== */
+body.voyage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.voyage header { padding: 60px 20px 10px; }
+.espace { flex: 1; min-height: 25vh; }
+
+.retour {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  color: var(--cyan);
+  text-decoration: none;
+}
+.retour:hover { text-decoration: underline; }
+
+.panneau {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto 30px;
+  padding: 24px;
+  text-align: center;
+  background: rgba(10, 15, 40, 0.7);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+}
+.legende { margin: 0; opacity: 0.8; }
+.grand-nombre {
+  margin: 6px 0 16px;
+  font-size: clamp(1.8rem, 7vw, 3.4rem);
+  font-weight: bold;
+  color: var(--cyan);
+  text-shadow: 0 0 20px var(--cyan);
+  font-variant-numeric: tabular-nums;
+}
+.panneau .bouton { border: none; cursor: pointer; font-size: 1rem; }
+.fiche .bouton { display: block; text-align: center; margin-top: 18px; }
+/* ===== Page jeu ===== */
+body.jeu-page { min-height: 100vh; }
+.jeu-page main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 70px 20px 40px;
+}
+
+.panneau-jeu {
+  text-align: center;
+  padding: 28px;
+  background: rgba(10, 15, 40, 0.75);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  animation: apparait 0.3s;
+}
+.panneau-jeu h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); }
+.panneau-jeu h2 { color: var(--cyan); margin: 10px 0; }
+
+.gros-emoji { font-size: 4.5rem; margin: 0; }
+.score {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin: 0;
+  color: var(--cyan);
+  text-shadow: 0 0 20px var(--cyan);
+}
+
+.etape { margin: 0 0 6px; opacity: 0.8; font-size: 0.9rem; }
+.barre { height: 8px; background: rgba(255, 255, 255, 0.12); border-radius: 8px; overflow: hidden; margin-bottom: 14px; }
+.barre div { height: 100%; background: linear-gradient(90deg, var(--violet), var(--cyan)); transition: width 0.4s; }
+
+.regles { list-style: none; padding: 0; text-align: left; max-width: 420px; margin: 16px auto; }
+.regles li { margin: 8px 0; }
+
+.deux { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+.colonne { display: grid; gap: 10px; margin: 16px 0; }
+
+.choix {
+  padding: 14px;
+  font-size: 1rem;
+  color: var(--texte);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s;
+}
+.choix:hover:not(:disabled) { transform: scale(1.03); background: rgba(139, 92, 246, 0.3); }
+.choix:disabled { cursor: default; opacity: 0.8; }
+.choix.vrai { background: rgba(34, 197, 94, 0.35); border-color: #22c55e; opacity: 1; }
+.choix.faux { background: rgba(239, 68, 68, 0.35); border-color: #ef4444; opacity: 1; }
+
+.verdict {
+  margin: 14px 0 6px;
+  padding: 12px 14px;
+  text-align: left;
+  border-radius: 0 10px 10px 0;
+  font-size: 0.95rem;
+}
+.verdict.bon { border-left: 4px solid #22c55e; background: rgba(34, 197, 94, 0.15); }
+.verdict.mauvais { border-left: 4px solid #ef4444; background: rgba(239, 68, 68, 0.15); }
+
+.sac {
+  margin-top: 18px;
+  padding: 10px;
+  font-size: 1.4rem;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+}
+.sac b { font-size: 0.9rem; margin-right: 6px; }
+.sac span { letter-spacing: 4px; }
+
+.bouton.gros { border: none; cursor: pointer; font-size: 1.05rem; margin: 10px 6px 0; }
+.jeu-page .bouton { border: none; cursor: pointer; font-size: 1rem; }
+
+.lien-jeu { text-align: center; margin: 40px 0 10px; }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyage depuis la Terre</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="voyage">
+  <canvas id="fond"></canvas>
+
+  <a class="retour" href="index.html">← Retour au système solaire</a>
+
+  <header>
+    <h1 id="titre">Terre → …</h1>
+    <p>Distance calculée en direct</p>
+  </header>
+
+  <div class="espace"></div>
+
+  <section class="panneau">
+    <p class="legende">Distance actuelle Terre → <span id="nomPlanete"></span></p>
+    <p class="grand-nombre"><span id="km">0</span> km</p>
+
+    <div class="stats">
+      <div class="stat"><b>En unités astronomiques</b><span id="ua">-</span></div>
+      <div class="stat"><b>Temps de la lumière</b><span id="lumiere">-</span></div>
+      <div class="stat"><b>À la vitesse de Voyager (17 km/s)</b><span id="voyager">-</span></div>
+      <div class="stat"><b>En avion de ligne (900 km/h)</b><span id="avion">-</span></div>
+    </div>
+
+    <button class="bouton" id="relancer">🚀 Relancer le tir</button>
+  </section>
+
+  <script src="planete.js"></script>
+</body>
+</html>
